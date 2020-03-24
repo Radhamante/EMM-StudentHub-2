@@ -1,0 +1,21 @@
+etudiant:
+- regarder l'emploi du temps
+- chat
+- signaler un retard
+- signaler une abscence
+
+prof:
+
+- regarder l'emploi du temps
+- chat
+- voir les retard et abscence
+- signaler un retard / abscence
+
+admin:
+
+- regarder l'emploi du temps
+- ajouter des cours a l'emploie du temps
+- voir les retard et abscence
+- signaler un retard / abscence
+- ajouter une classe
+- ajouter un eleve

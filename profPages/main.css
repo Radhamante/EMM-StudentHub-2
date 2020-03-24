@@ -7,6 +7,7 @@ body{
     display: flex;
     align-items: center;
     flex-direction: column;
+    overflow: hidden;
 }
 
 header{
@@ -46,15 +47,16 @@ main{
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
     height: calc(100% - 80px);
+    padding: 0px 20px
 }
 .button{
     width: 30%;
     min-width: 300px;
     height: 50%;
     box-sizing: border-box;
-    padding: 20px;
+    padding: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -65,6 +67,7 @@ main{
 .button a{
     transition: 0.2s;
     height: 100%;
+    width: max-content;
     display: flex;
     flex-direction: column;
     align-items: center;

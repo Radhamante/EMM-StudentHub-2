@@ -15,11 +15,16 @@ let calendarEl = document.getElementById('calendar');
 let event = []
 const fb = firebase.firestore();
 
-window.onload = () =>{
+// onclick = (e) =>{
+//     console.log("e")
+// } 
 
+
+window.onload = () => {
     let calendar
     fb.collection("calendar").onSnapshot(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
+
             event.push(doc.data())
         })
         console.log(event)
@@ -29,10 +34,11 @@ window.onload = () =>{
             defaultView: 'timeGridWeek',
             locale:'fr',
             allDaySlot : false,
-            height: 600,
+            height: 585,
             startTime:9,
-            minTime: '8:30',
+            minTime: '8:00',
             maxTime: '18:00',
+            
             header:{
                 left:'prev,next today',
                 center:'title',
@@ -45,10 +51,18 @@ window.onload = () =>{
             },
             nowIndicator:true,
             businessHours: {
-              startTime: '9:00', // a start time (10am in this example)
-              endTime: '19:00', // an end time (6pm in this example)
+              startTime: '9:00', 
+              endTime: '17:00',
             },
-            events: test
+            events: event,
+            eventClick: function(info) {
+                info.jsEvent.preventDefault(); // don't let the browser navigate
+                
+                if (info.event.url) {
+                    console.log("bite")
+                  window.open(info.event.url);
+                }
+            }
         });
         
         calendar.render();

@@ -24,3 +24,5 @@ admin:
 idees:
 - voir le nombre de retard et abscence sur son profile
 - pouvoir link un cours dans le chat ( comme ca les autre peuvent directement cliquer sur le cours et voir les information )
+- pouvoir stocker des documents 
+- pouvoir envoyé des msg individuel 

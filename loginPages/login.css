@@ -146,6 +146,9 @@ form{
 .input-div.pass{
     margin-bottom: 4px;
 }
+.input-div.username{
+    margin-bottom: 4px;
+}
 
 a{
     display: block;

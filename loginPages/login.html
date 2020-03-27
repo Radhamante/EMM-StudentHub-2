@@ -17,13 +17,13 @@
         <div class="login-content">
             <form action="index.html">
                 <img src="../assets/logos/avatar.svg">
-                <h2 class="title">Welcome</h2>
+                <h2 class="title">Bonjour</h2>
                 <div class="input-div one">
                     <div class="i">
                         <i class="fas fa-user"></i>
                     </div>
                     <div class="div">
-                        <h5>Username</h5>
+                        <h5>Email</h5>
                         <input type="text" class="input" id="username">
                     </div>
                 </div>
@@ -32,16 +32,22 @@
                         <i class="fas fa-lock"></i>
                     </div>
                     <div class="div">
-                        <h5>Password</h5>
+                        <h5>Mot de passe</h5>
                         <input type="password" class="input" id="pass">
                     </div>
                 </div>
                 <a href="../signupPages/signup.html">Pas encore inscrit ?</a>
-                <input type="button" class="btn" value="Login" id="sign_up">
+                <input type="button" class="btn" value="Allons-y !" id="sign_up">
             </form>
         </div>
     </div>
-    <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase.js"></script>
+    <script src="https://unpkg.com/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script src="https://unpkg.com/bootstrap@4.3.1/dist/js/bootstrap.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.3/firebase-database.js"></script>
     <script type="text/javascript" src="firebase_login.js"></script>
     <script src="login.js"></script>
 </body>

@@ -13,6 +13,23 @@ var firebaseConfig = {
   // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
+//supprimer un compte 
+const supprimer_le_compte = document.getElementById('supp')
+
+supprimer_le_compte.addEventListener('click', e =>{
+
+  var user = firebase.auth().currentUser;
+  //fonction delete
+  user.delete().then(function(){
+    
+    document.location.pathname='loginPages/login.html'
+  }).catch(function(error){
+    console.log("erreur de suppression")
+  })
+})
+
+
+
 const deconnexion = document.getElementById('deco')
 
 deconnexion.addEventListener('click', e =>{

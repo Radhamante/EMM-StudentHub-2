@@ -22,13 +22,13 @@ btn_SignUp.addEventListener('click', e =>{
   if(txtPassword.value == txtPassword2.value) {
     const email = txtEmail.value; 
     const pass = txtPassword.value;
-    alert("Le compte "+txtEmail.value+" à bien été créé")
     //envoi de la donnée radio au cloud firestore
     firebase.auth().createUserWithEmailAndPassword(email,pass).then(cred =>{
-      var user = firebase.auth().currentUser;
-      var value_btn_radio = $("input[name='role']:checked").val();
-      //retourne la valeur du radio
-      return firebase.firestore().collection('Personnes_connectés').doc(cred.user.uid).set({
+        alert("Le compte "+txtEmail.value+" à bien été créé")
+        var user = firebase.auth().currentUser;
+        var value_btn_radio = $("input[name='role']:checked").val();
+        //retourne la valeur du radio
+        return firebase.firestore().collection('Personnes_connectés').doc(cred.user.uid).set({
         autorisation: parseInt(value_btn_radio)
       })
     });

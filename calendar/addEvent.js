@@ -88,14 +88,24 @@ valider = () =>{
             start: `${jour.value} ${debut.value}:00`,
             end: `${jour.value} ${fin.value}:00`,
             backgroundColor: color.value,
-            borderColor: "#999"
+            borderColor: "#999",
+            late:{student:[],admin:[],prof:[]},
+            absence:[]
         })
         .then(function(docRef) {
-            console.log(docRef.id)
+            fb.collection("calendar").doc(docRef.id).update({id:docRef.id})
+            alert("La classe a été crée")
+            titre.value = ""
+            prof.value = ""
+            jour.value = ""
+            debut.value = ""
+            fin.value = ""
+            color.value = "#2fd69a"
         })
         .catch(function(error) {
             console.error("Error adding document: ", error);
         });
     }
-
 }
+let user = null
+

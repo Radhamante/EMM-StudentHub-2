@@ -15,19 +15,19 @@ let calendarEl = document.getElementById('calendar');
 let event = []
 const fb = firebase.firestore();
 
-// onclick = (e) =>{
-//     console.log("e")
-// } 
+
+
+console.log(document.querySelector("header"))
 
 
 window.onload = () => {
+
+
     let calendar
     fb.collection("calendar").onSnapshot(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
-
             event.push(doc.data())
         })
-        console.log(event)
         let test = [{"title":"aaa","start":"2020-03-25 09:00:00","end":"2020-03-25 11:00:00","borderColor": "#839c49"}]
         calendar = new FullCalendar.Calendar(calendarEl, {
             plugins: [ 'dayGrid','timeGrid' ],
@@ -56,19 +56,24 @@ window.onload = () => {
             },
             events: event,
             eventClick: function(info) {
-                info.jsEvent.preventDefault(); // don't let the browser navigate
-                
-                if (info.event.url) {
-                    console.log("bite")
-                  window.open(info.event.url);
-                }
+                console.log(info.event.id)
+                window.location.href = window.location.origin + "/absenceLate/index.html?" + info.event.id
             }
         });
         
         calendar.render();
+        fb.collection('Personnes_connectés').doc(firebase.auth().currentUser.uid).get().then((e) => {
+            auth = e.data().autorisation
+            if (auth == 1) {
+                document.querySelector("header").innerHTML += `<a href="addEvent.html"><i class="far fa-calendar-plus"></i></a>`
+                document.getElementById("return").href = "../adminPages/main.html"
+            }
+            else if (auth == 2) {
+                document.getElementById("return").href = "../profPages/main.html"
+            }
+            else if (auth == 3) {
+                document.getElementById("return").href = "../studentPages/main.html"
+            }
+        })
     })
-    
-    
-
-    
 };

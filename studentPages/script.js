@@ -21,6 +21,7 @@ supprimer_le_compte.addEventListener('click', e =>{
   var user = firebase.auth().currentUser;
 
   // fonction delete
+  firebase.firestore().collection('Personnes_connectés').doc(user.uid).delete();
   user.delete().then(function(){
       document.location.pathname='loginPages/login.html'
   }).catch(function(error){

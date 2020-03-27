@@ -28,11 +28,3 @@ header i{
     font-size: 30px;
     color: white
 }
-
-#calendar{
-    padding-top: 90px;
-    margin: auto;
-    height: 70vh;
-    max-width: 1000px;
-    box-sizing: border-box
-}

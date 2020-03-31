@@ -94,7 +94,7 @@ creatCalendar = (classe) =>{
             },
             events: event,
             eventClick: function(info) {
-                window.location.href = window.location.origin + "/absenceLate/index.html?" + info.event.id + "?" + calendarPicker
+                window.location.href = window.location.origin + "/public/absenceLate/index.html?" + info.event.id + "?" + calendarPicker
             }
         });
         

@@ -30,13 +30,13 @@ firebase.auth().onAuthStateChanged(firebaseUser =>{
     console.log(user.uid)
     firebase.firestore().collection('Personnes_connectés').doc(user.uid).get().then(doc =>{
       if(doc.data().autorisation == 3){
-        document.location.pathname='studentPages/main.html'
+        document.location.pathname='public/studentPages/main.html'
       }
       if(doc.data().autorisation == 2){
-        document.location.pathname='profPages/main.html'
+        document.location.pathname='public/profPages/main.html'
       }
       if(doc.data().autorisation == 1){
-        document.location.pathname='adminPages/main.html'
+        document.location.pathname='public/adminPages/main.html'
       }
     })
 

@@ -22,7 +22,7 @@ supprimer_le_compte.addEventListener('click', e =>{
   //fonction delete
   user.delete().then(function(){
     
-    document.location.pathname='loginPages/login.html'
+    document.location.pathname='public/loginPages/login.html'
   }).catch(function(error){
     console.log("erreur de suppression")
   })
@@ -34,7 +34,7 @@ const deconnexion = document.getElementById('deco')
 
 deconnexion.addEventListener('click', e =>{
     firebase.auth().signOut();
-    document.location.pathname='loginPages/login.html'
+    document.location.pathname='public/loginPages/login.html'
 })
 
 firebase.auth().onAuthStateChanged(firebaseUser =>{

@@ -48,124 +48,132 @@ firebase.auth().onAuthStateChanged(firebaseUser =>{
     }
   })
 
+  
+      //Prénom
+      let e_prenom = ""
+      firebase.firestore().collection('Personnes_connectés').get().then(function (querySnapshot) {
+          querySnapshot.forEach(function (doc) {
+              // let console = doc.data();
+              e_prenom +=  `<p>${doc.data().Prenom}</p>`
+
+              console.log(doc.data())
+          })
+          $('#name_usersID').append(e_prenom)
+      })
+
+      //Nom
+      let e_nom = ""
+      firebase.firestore().collection('Personnes_connectés').get().then(function (querySnapshot) {
+          querySnapshot.forEach(function (doc) {
+              // let console = doc.data();
+              e_nom +=  `<p>${doc.data().Nom}</p>`
+
+              console.log(doc.data())
+          })
+          $('#lastname_usersID').append(e_nom)
+      })
+
+      //Classe
+      let e_classee = ""
+      firebase.firestore().collection('Personnes_connectés').get().then(function (querySnapshot) {
+          querySnapshot.forEach(function (doc) {
+              // let console = doc.data();
+              e_classee +=  `<p>${doc.data().Classe}</p>`
+
+              console.log(doc.data())
+          })
+          $('#class_usersID').append(e_classee)
+      })
+
+      //Email
+      let e_email = ""
+      firebase.firestore().collection('Personnes_connectés').get().then(function (querySnapshot) {
+          querySnapshot.forEach(function (doc) {
+              // let console = doc.data();
+              e_email +=  `<p>${doc.data().Email}</p>`
+
+              console.log(doc.data())
+          })
+          $('#email_usersID').append(e_email)
+      })
+      
+let all_user = document.getElementById('list_complet_user')
   //profil change
+  all_user.addEventListener('click', e =>{     
+      //Prénom
+      let e_prenom = ""
+      firebase.firestore().collection('Personnes_connectés').get().then(function (querySnapshot) {
+          querySnapshot.forEach(function (doc) {
+              e_prenom +=  `<p>${doc.data().Prenom}</p>`
+          })
+          $('#name_usersID').append(e_prenom)
+      })
+      //Nom
+      let e_nom = ""
+      firebase.firestore().collection('Personnes_connectés').get().then(function (querySnapshot) {
+          querySnapshot.forEach(function (doc) {
+              e_nom +=  `<p>${doc.data().Nom}</p>`
+          })
+          $('#lastname_usersID').append(e_nom)
+      })
+      //Classe
+      let e_classee = ""
+      firebase.firestore().collection('Personnes_connectés').get().then(function (querySnapshot) {
+          querySnapshot.forEach(function (doc) {
+              e_classee +=  `<p>${doc.data().Classe}</p>`
+          })
+          $('#class_usersID').append(e_classee)
+      })
+      //Email
+      let e_email = ""
+      firebase.firestore().collection('Personnes_connectés').get().then(function (querySnapshot) {
+          querySnapshot.forEach(function (doc) {
+              e_email +=  `<p>${doc.data().Email}</p>`
+          })
+          $('#email_usersID').append(e_email)
+      })
+    })
 
-// //Prénom
-// let e_prenom = ""
-// firebase.firestore().collection('Personnes_connectés').get().then(function (querySnapshot) {
-//     querySnapshot.forEach(function (doc) {
-//         // let console = doc.data();
-//         e_prenom +=  `<p>${doc.data().Prenom}</p>`
 
-//         console.log(doc.data())
-//     })
-//     $('#name_usersID').append(e_prenom)
-// })
+let exo = ""
+firebase.firestore().collection('name_class').get().then(function (querySnapshot) {
+    querySnapshot.forEach(function (doc) {
+      exo+= `<button value="${doc.data().name}" class="hhey" id="${doc.data().name}">${doc.data().name}</button>`
+      var noem = document.getElementById(doc.data().name)
+    })
+    $('#filter_class').append(exo)
+    let tbl = document.getElementsByClassName('hhey');
+    for(let j=0; j<tbl.length; j++){
+       console.log(tbl[j].value)
+       $('#filter_class').on('click','button', e =>{
+        $( "#principal_list" ).load(window.location.href + " #principal_list" )
+        if (e.target && e.target.id == tbl[j].value){
+          console.log("oui")
+          let e_classe = "";
+          let e_mail ="";
+          let e_name = "";
+          let e_lastname ="";
+          firebase.firestore().collection('Personnes_connectés').get().then(function (querySnapshot) {
+              querySnapshot.forEach(function (doc) {
+                  if(doc.data().Classe ==tbl[j].value ){
+                    e_classe +=  `<p>${doc.data().Classe}</p>`
+                    e_mail +=  `<p>${doc.data().Email}</p>`
+                    e_name +=  `<p>${doc.data().Prenom}</p>`
+                    e_lastname += `<p>${doc.data().Nom}</p>`
 
-// //Nom
-// let e_nom = ""
-// firebase.firestore().collection('Personnes_connectés').get().then(function (querySnapshot) {
-//     querySnapshot.forEach(function (doc) {
-//         // let console = doc.data();
-//         e_nom +=  `<p>${doc.data().Nom}</p>`
+                  console.log(doc.data())
+                  }
+              })
+              $('#class_usersID').append(e_classe)
+              $('#email_usersID').append(e_mail)
+              $('#name_usersID').append(e_name)
+              $('#lastname_usersID').append(e_lastname)
 
-//         console.log(doc.data())
-//     })
-//     $('#lastname_usersID').append(e_nom)
-// })
+          })
 
-// //Classe
-// let e_classe = ""
-// firebase.firestore().collection('Personnes_connectés').get().then(function (querySnapshot) {
-//     querySnapshot.forEach(function (doc) {
-//         // let console = doc.data();
-//         e_classe +=  `<p>${doc.data().Classe}</p>`
-
-//         console.log(doc.data())
-//     })
-//     $('#class_usersID').append(e_classe)
-// })
-
-// //Email
-// let e_email = ""
-// firebase.firestore().collection('Personnes_connectés').get().then(function (querySnapshot) {
-//     querySnapshot.forEach(function (doc) {
-//         // let console = doc.data();
-//         e_email +=  `<p>${doc.data().Email}</p>`
-
-//         console.log(doc.data())
-//     })
-//     $('#email_usersID').append(e_email)
-// })
-
-//Filter
-
-//Filter 6e
-const filter_6e = document.getElementById('filter_6e')
-filter_6e.addEventListener('click', e =>{
-  let e_emaill = ""
-  let e_name=""
-  let e_lastname=""
-  let e_classe=""
-  firebase.firestore().collection('Personnes_connectés').get().then(function (querySnapshot) {
-      querySnapshot.forEach(function (doc) {
-        if(doc.data().Classe == "6e"){
-          e_emaill +=  `<p>${doc.data().Email}</p>`
-          e_name +=  `<p>${doc.data().Prenom}</p>`
-          e_lastname +=  `<p>${doc.data().Nom}</p>`
-          e_classe +=  `<p>${doc.data().Classe}</p>`
         }
       })
-      $('#email_usersID').append(e_emaill)
-      $('#name_usersID').append(e_name)
-      $('#lastname_usersID').append(e_lastname)
-      $('#class_usersID').append(e_classe)
+    }
+    
+      
     })
-})
-
-//Filter 5e
-const filter_5e = document.getElementById('filter_5e')
-
-filter_5e.addEventListener('click', e =>{
-  let e_email = ""
-  let e_name=""
-  let e_lastname=""
-  let e_classe=""
-  firebase.firestore().collection('Personnes_connectés').get().then(function (querySnapshot) {
-      querySnapshot.forEach(function (doc) {
-        if(doc.data().Classe == "5e"){
-          e_email +=  `<p>${doc.data().Email}</p>`
-          e_name +=  `<p>${doc.data().Prenom}</p>`
-          e_lastname +=  `<p>${doc.data().Nom}</p>`
-          e_classe +=  `<p>${doc.data().Classe}</p>`
-        }
-      })
-      $('#email_usersID').append(e_email)
-      $('#name_usersID').append(e_name)
-      $('#lastname_usersID').append(e_lastname)
-      $('#class_usersID').append(e_classe)
-    })
-})
-
-//Filter 4e
-const filter_4e = document.getElementById('filter_4e')
-filter_4e.addEventListener('click', e =>{
-  let e_emaill = ""
-  let e_name=""
-  let e_lastname=""
-  let e_classe=""
-  firebase.firestore().collection('Personnes_connectés').get().then(function (querySnapshot) {
-      querySnapshot.forEach(function (doc) {
-        if(doc.data().Classe == "4e"){
-          e_emaill +=  `<p>${doc.data().Email}</p>`
-          e_name +=  `<p>${doc.data().Prenom}</p>`
-          e_lastname +=  `<p>${doc.data().Nom}</p>`
-          e_classe +=  `<p>${doc.data().Classe}</p>`
-        }
-      })
-      $('#email_usersID').append(e_emaill)
-      $('#name_usersID').append(e_name)
-      $('#lastname_usersID').append(e_lastname)
-      $('#class_usersID').append(e_classe)
-    })
-})

@@ -76,6 +76,11 @@ label input:focus{
     border: 2px solid #999;
     border-radius: 5px
 }
+.colorP{
+    margin: 0;
+    color: #555;
+    font-size: 10px
+}
 
 label:last-of-type input{
     display: none;

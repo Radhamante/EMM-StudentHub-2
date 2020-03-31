@@ -15,20 +15,58 @@ let calendarEl = document.getElementById('calendar');
 let event = []
 const fb = firebase.firestore();
 
+const header = document.getElementsByTagName("header")[0]
 
-
-console.log(document.querySelector("header"))
 
 
 window.onload = () => {
 
+    fb.collection("name_class").onSnapshot(querySnapshot => {
+        fb.collection('Personnes_connectés').doc(firebase.auth().currentUser.uid).get().then((e) => {
+        auth = e.data().autorisation
+        if (auth == 1 ) {
+            let liste = ""
+            querySnapshot.forEach(doc => {
+                liste += `<option value="${doc.data().name}">${doc.data().name}</option>`
+            })
+            header.innerHTML += `<select name="calendar" onchange="creatCalendar()" id="calendarPicker">${liste}</select>`
+            document.querySelector("header").innerHTML += `<a href="addEvent.html"><i class="far fa-calendar-plus"></i></a>`
+            document.getElementById("return").href = "../adminPages/main.html"
+        }
+        else if (auth == 2) {
+            let liste = ""
+            querySnapshot.forEach(doc => {
+                liste += `<option value="${doc.data().name}">${doc.data().name}</option>`
+            })
+            header.innerHTML += `<select name="calendar" onchange="creatCalendar()" id="calendarPicker">${liste}</select>`
+            document.getElementById("return").href = "../profPages/main.html"
+        }
+        else if (auth == 3) {
+            document.getElementById("return").href = "../studentPages/main.html"
+            creatCalendar(e.data().Classe)
+        }
+            
+        })
 
+    })
+};
+
+creatCalendar = (classe) =>{
+    let calendarPicker = undefined
+    if (classe == undefined) {
+        calendarPicker = document.getElementById("calendarPicker").value
+    }else{
+        calendarPicker = classe
+    }
+    document.getElementById("BaseBackground").style.display = "none"
     let calendar
-    fb.collection("calendar").onSnapshot(function(querySnapshot) {
+    fb.collection(calendarPicker).onSnapshot(function(querySnapshot) {
+        calendarEl.innerHTML = ""
+        event = []
+        
         querySnapshot.forEach(function(doc) {
             event.push(doc.data())
         })
-        let test = [{"title":"aaa","start":"2020-03-25 09:00:00","end":"2020-03-25 11:00:00","borderColor": "#839c49"}]
         calendar = new FullCalendar.Calendar(calendarEl, {
             plugins: [ 'dayGrid','timeGrid' ],
             defaultView: 'timeGridWeek',
@@ -56,24 +94,11 @@ window.onload = () => {
             },
             events: event,
             eventClick: function(info) {
-                console.log(info.event.id)
-                window.location.href = window.location.origin + "/absenceLate/index.html?" + info.event.id
+                window.location.href = window.location.origin + "/absenceLate/index.html?" + info.event.id + "?" + calendarPicker
             }
         });
         
         calendar.render();
-        fb.collection('Personnes_connectés').doc(firebase.auth().currentUser.uid).get().then((e) => {
-            auth = e.data().autorisation
-            if (auth == 1) {
-                document.querySelector("header").innerHTML += `<a href="addEvent.html"><i class="far fa-calendar-plus"></i></a>`
-                document.getElementById("return").href = "../adminPages/main.html"
-            }
-            else if (auth == 2) {
-                document.getElementById("return").href = "../profPages/main.html"
-            }
-            else if (auth == 3) {
-                document.getElementById("return").href = "../studentPages/main.html"
-            }
-        })
+    
     })
-};
+}

@@ -71,3 +71,64 @@ main{
 .lateCtnr{
     width: 50%
 }
+
+.popup{
+    display: none;
+    position: absolute;
+    width: 300px;
+    height: 400px;
+    left: calc(50% - 150px);
+    border: #2fd69a 2px solid;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 5px 1px darkgrey;
+    flex-direction: column;
+    padding: 40px 10px;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+}
+.popup h3{
+    font-size: 25px;
+}
+
+.popup label{
+    margin: 10px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.popup label input{
+    margin-top: 4px
+}
+
+.close{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: white;
+    color: lightgray;
+    border: none;
+    padding: none;
+    margin: none;
+    font-size: 22px;
+    transition: 0.2s
+}
+.close:hover{
+    color: darkgray
+}
+
+.valide{
+    width: 180px;
+    height: 40px;
+    margin: auto;
+    background-color: #2fd69a;
+    border: 2px solid #24ac7e;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 20px;
+    color: white;
+    font-weight: bolder
+}
+

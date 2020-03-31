@@ -15,6 +15,34 @@
         </div>
     </header>
     <main>
+        <div id="popupLate" class="popup">
+            <button class="close" onclick="popupLate.style.display = 'none'"><i class="far fa-times-circle"></i></button>
+            <h3>Signaler un retard</h3>
+            <label>
+                Prenom
+                <input type="text" id="latePrenom">
+            </label>
+            <label>
+                Nom
+                <input type="text" id="lateNom">
+            </label>
+            <button class="valide" onclick="ProfAndAdminLate()">Valider</button>
+        </div>
+
+        <div id="popupAbsence" class="popup">
+            <button class="close" onclick="popupAbsence.style.display = 'none'"><i class="far fa-times-circle"></i></button>
+            <h3>Signaler une absence</h3>
+            <label>
+                Prenom
+                <input type="text" id="absencePrenom">
+            </label>
+            <label>
+                Nom
+                <input type="text" id="absenceNom">
+            </label>
+            <button class="valide" onclick="ProfAndAdminAbsence()">Valider</button>
+        </div>
+
         <div class="info">
             <h1></h1> <!-- titre du cours -->
             <h3></h3> <!-- professeur -->
@@ -41,7 +69,7 @@
                 </ul>
             </div>
             <div class="late">
-                <h3>absence</h3>
+                <h3>Absence</h3>
                 <ul id="absence">
 
                 </ul>

@@ -41,13 +41,20 @@ changeColor = () =>{
 /* firebase */
 
 const fb = firebase.firestore();
+const classe = document.getElementById("classe")
 
-
+fb.collection("name_class").onSnapshot(querySnapshot => {
+    let liste
+    querySnapshot.forEach(doc => {
+        liste += `<option value="${doc.data().name}">${doc.data().name}</option>`
+    })
+    classe.innerHTML = liste
+})
 
 
 valider = () =>{
     let error = false
-
+    console.log(classe.value)
     const titre = document.getElementById("titre")
     const prof = document.getElementById("prof")
     const jour = document.getElementById("jour")
@@ -83,7 +90,7 @@ valider = () =>{
         console.log(debut)
         console.log(fin)
         console.log(color)
-        fb.collection("calendar").add({
+        fb.collection(classe.value).add({
             title: `${titre.value} \n professeur : \n ${prof.value}`,
             start: `${jour.value} ${debut.value}:00`,
             end: `${jour.value} ${fin.value}:00`,
@@ -93,7 +100,7 @@ valider = () =>{
             absence:[]
         })
         .then(function(docRef) {
-            fb.collection("calendar").doc(docRef.id).update({id:docRef.id})
+            fb.collection(classe.value).doc(docRef.id).update({id:docRef.id})
             alert("La classe a été crée")
             titre.value = ""
             prof.value = ""

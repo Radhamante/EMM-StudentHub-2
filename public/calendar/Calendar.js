@@ -21,7 +21,7 @@ const header = document.getElementsByTagName("header")[0]
 
 window.onload = () => {
 
-    fb.collection("name_class").onSnapshot(querySnapshot => {
+    fb.collection("name_class").get().then(querySnapshot => {
         fb.collection('Personnes_connectés').doc(firebase.auth().currentUser.uid).get().then((e) => {
         auth = e.data().autorisation
         if (auth == 1 ) {
